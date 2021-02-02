@@ -16,7 +16,7 @@
 #undef NetBSD
 #undef mips
 #undef sparc
-
+#undef viz
 namespace llvm {
 
 class VersionTuple;
@@ -99,6 +99,7 @@ public:
     wasm64,         // WebAssembly with 64-bit pointers
     renderscript32, // 32-bit RenderScript
     renderscript64, // 64-bit RenderScript
+    viz,            //VIZ
     ve,             // NEC SX-Aurora Vector Engine
     LastArchType = ve
   };

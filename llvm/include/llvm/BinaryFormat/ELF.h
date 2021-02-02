@@ -317,6 +317,7 @@ enum {
   EM_BPF = 247,           // Linux kernel bpf virtual machine
   EM_VE = 251,            // NEC SX-Aurora VE
   EM_CSKY = 252,          // C-SKY 32-bit processor
+  EM_VIZ = 300
 };
 
 // Object file classes.
@@ -408,6 +409,14 @@ static inline int64_t decodePPC64LocalEntryOffset(unsigned Other) {
   return ((1 << Val) >> 2) << 2;
 }
 
+//e_flags for VIZ (TODO) (empty for now)
+enum {
+
+};
+//ELF relocation types for VIZ
+enum {
+#include "ELFRelocs/Viz.def"
+};
 // ELF Relocation types for PPC64
 enum {
 #include "ELFRelocs/PowerPC64.def"

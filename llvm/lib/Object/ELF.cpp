@@ -159,6 +159,13 @@ StringRef llvm::object::getELFRelocationTypeName(uint32_t Machine,
       break;
     }
     break;
+  case ELF::EM_VIZ:
+  switch (Type) {
+#include "llvm/Support/ELFRelocs/Viz.def"
+  default:
+  break;
+}
+break;
   default:
     break;
   }

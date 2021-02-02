@@ -204,14 +204,21 @@ static FeatureBitset getFeatures(StringRef CPU, StringRef TuneCPU, StringRef FS,
 
   return Bits;
 }
-
+bool VizDisableUnreconginizedMessage = false;
 void MCSubtargetInfo::InitMCProcessorInfo(StringRef CPU, StringRef TuneCPU,
                                           StringRef FS) {
+  #if 1 // Disable reconginized processor message. For Viz
+if (TargetTriple.getArch() == llvm::Triple::viz)
+    VizDisableUnreconginizedMessage = true;
+#endif
+
   FeatureBits = getFeatures(CPU, TuneCPU, FS, ProcDesc, ProcFeatures);
   if (!TuneCPU.empty())
     CPUSchedModel = &getSchedModelForCPU(TuneCPU);
   else
     CPUSchedModel = &MCSchedModel::GetDefaultSchedModel();
+
+  
 }
 
 void MCSubtargetInfo::setDefaultFeatures(StringRef CPU, StringRef TuneCPU,
